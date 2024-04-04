@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>My Flask App</title>
+    <style>
+        table {
+            border: 1px solid black;
+            /* Add border */
+            border-collapse: collapse;
+            /* Collapse border */
+            margin: 0 auto;
+            /* Center table */
+        }
+
+        th,
+        td {
+            border: 1px solid black;
+            /* Add border to cells */
+            padding: 5px;
+            /* Add some padding for readability */
+        }
+
+        button {
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Result: {{ names }} {{ rows1 }}</h1>
+    <table>
+        <thead>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                <th scope="col" colspan="2">New Order</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Warehouse: {{ warehouse }}</td>
+                <td>District: {{ district }}</td>
+                <td colspan="2">Date: {{ date }}<br></td>
+            </tr>
+            <tr>
+                <td>Customer: {{ customer }}</td>
+                <td>Name: {{ customer_name }}</td>
+                <td>Credit: {{ customer_credit }}</td>
+                <td>Discount: {{ discount }}</td>
+            </tr>
+            <tr>
+                <td>Order Number: {{ order_number }}</td>
+                <td>Number of Lines: {{ number_of_lines }}</td>
+                <td>Warehouse Tax: {{ warehouse_tax }}</td>
+                <td>District Tax: {{ district_tax }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <br><br>
+    <br><br>
+    <table>
+        <thead>
+            <tr>
+                {% for header in headers %}
+                <th scope="col">{{ header }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in rows %}
+            <tr>
+                {% for cell in row %}
+                <td>{{ cell }}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+            <tr>
+                <td class="tg-0lax" colspan="3">Execution Status: {{ execution_status}}<br></td>
+                <td class="tg-0lax" colspan="3"></td>
+                <td class="tg-0lax" colspan="2">Total: {{ total }}</td>
+            </tr>
+            <tr>
+                <td class="tg-0lax" colspan="3"></td>
+                <td class="tg-0lax" colspan="5">Total processing time: {{ processing_time }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <br><br>
+    <button onclick="location.href='{{ url_for('index') }}'">Perform New Order Transaction</button>
+</body>
+
+</html>
